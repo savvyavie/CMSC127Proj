@@ -28,13 +28,19 @@ Partial Class New_Book
         Label1 = New Label()
         Label2 = New Label()
         Label3 = New Label()
-        UIDtxt = New TextBox()
-        FNametxt = New TextBox()
-        LNametxt = New TextBox()
+        BookIDtxt = New TextBox()
+        Titletxt = New TextBox()
+        Authortxt = New TextBox()
         Label4 = New Label()
         Label5 = New Label()
-        Emailtxt = New TextBox()
-        Phonetxt = New TextBox()
+        ISBNtxt = New TextBox()
+        Genretxt = New TextBox()
+        PubDate = New DateTimePicker()
+        Label6 = New Label()
+        Label7 = New Label()
+        Copiestxt = New TextBox()
+        Newrad = New RadioButton()
+        Existingrad = New RadioButton()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -52,7 +58,7 @@ Partial Class New_Book
         ' 
         ' Confirm
         ' 
-        Confirm.Location = New Point(236, 379)
+        Confirm.Location = New Point(243, 379)
         Confirm.Name = "Confirm"
         Confirm.Size = New Size(154, 59)
         Confirm.TabIndex = 3
@@ -61,7 +67,7 @@ Partial Class New_Book
         ' 
         ' Closebtn
         ' 
-        Closebtn.Location = New Point(396, 379)
+        Closebtn.Location = New Point(403, 379)
         Closebtn.Name = "Closebtn"
         Closebtn.Size = New Size(154, 59)
         Closebtn.TabIndex = 4
@@ -71,95 +77,157 @@ Partial Class New_Book
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(194, 227)
+        Label1.Location = New Point(59, 230)
         Label1.Name = "Label1"
-        Label1.Size = New Size(29, 15)
+        Label1.Size = New Size(48, 15)
         Label1.TabIndex = 5
-        Label1.Text = "UID:"
+        Label1.Text = "BookID:"
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(194, 256)
+        Label2.Location = New Point(59, 259)
         Label2.Name = "Label2"
-        Label2.Size = New Size(67, 15)
+        Label2.Size = New Size(32, 15)
         Label2.TabIndex = 6
-        Label2.Text = "First Name:"
+        Label2.Text = "Title:"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(194, 285)
+        Label3.Location = New Point(59, 288)
         Label3.Name = "Label3"
-        Label3.Size = New Size(66, 15)
+        Label3.Size = New Size(47, 15)
         Label3.TabIndex = 7
-        Label3.Text = "Last Name:"
+        Label3.Text = "Author:"
         ' 
-        ' UIDtxt
+        ' BookIDtxt
         ' 
-        UIDtxt.Location = New Point(296, 224)
-        UIDtxt.Name = "UIDtxt"
-        UIDtxt.Size = New Size(300, 23)
-        UIDtxt.TabIndex = 8
+        BookIDtxt.Location = New Point(161, 227)
+        BookIDtxt.Name = "BookIDtxt"
+        BookIDtxt.Size = New Size(300, 23)
+        BookIDtxt.TabIndex = 8
         ' 
-        ' FNametxt
+        ' Titletxt
         ' 
-        FNametxt.Location = New Point(296, 253)
-        FNametxt.Name = "FNametxt"
-        FNametxt.Size = New Size(300, 23)
-        FNametxt.TabIndex = 9
+        Titletxt.Location = New Point(161, 256)
+        Titletxt.Name = "Titletxt"
+        Titletxt.Size = New Size(300, 23)
+        Titletxt.TabIndex = 9
         ' 
-        ' LNametxt
+        ' Authortxt
         ' 
-        LNametxt.Location = New Point(296, 282)
-        LNametxt.Name = "LNametxt"
-        LNametxt.Size = New Size(300, 23)
-        LNametxt.TabIndex = 10
+        Authortxt.Location = New Point(161, 285)
+        Authortxt.Name = "Authortxt"
+        Authortxt.Size = New Size(300, 23)
+        Authortxt.TabIndex = 10
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(194, 314)
+        Label4.Location = New Point(59, 317)
         Label4.Name = "Label4"
-        Label4.Size = New Size(39, 15)
+        Label4.Size = New Size(35, 15)
         Label4.TabIndex = 11
-        Label4.Text = "Email:"
+        Label4.Text = "ISBN:"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(194, 343)
+        Label5.Location = New Point(59, 346)
         Label5.Name = "Label5"
-        Label5.Size = New Size(91, 15)
+        Label5.Size = New Size(41, 15)
         Label5.TabIndex = 12
-        Label5.Text = "Phone Number:"
+        Label5.Text = "Genre:"
         ' 
-        ' Emailtxt
+        ' ISBNtxt
         ' 
-        Emailtxt.Location = New Point(296, 311)
-        Emailtxt.Name = "Emailtxt"
-        Emailtxt.Size = New Size(300, 23)
-        Emailtxt.TabIndex = 13
+        ISBNtxt.Location = New Point(161, 314)
+        ISBNtxt.Name = "ISBNtxt"
+        ISBNtxt.Size = New Size(300, 23)
+        ISBNtxt.TabIndex = 13
         ' 
-        ' Phonetxt
+        ' Genretxt
         ' 
-        Phonetxt.Location = New Point(296, 340)
-        Phonetxt.Name = "Phonetxt"
-        Phonetxt.Size = New Size(300, 23)
-        Phonetxt.TabIndex = 14
+        Genretxt.Location = New Point(161, 343)
+        Genretxt.Name = "Genretxt"
+        Genretxt.Size = New Size(300, 23)
+        Genretxt.TabIndex = 14
+        ' 
+        ' PubDate
+        ' 
+        PubDate.CustomFormat = "yyyy-MM-dd"
+        PubDate.Format = DateTimePickerFormat.Custom
+        PubDate.Location = New Point(532, 251)
+        PubDate.Name = "PubDate"
+        PubDate.Size = New Size(200, 23)
+        PubDate.TabIndex = 15
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Location = New Point(583, 233)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(93, 15)
+        Label6.TabIndex = 16
+        Label6.Text = "Publishing Date:"
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(557, 285)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(107, 15)
+        Label7.TabIndex = 17
+        Label7.Text = "Number of Copies:"
+        ' 
+        ' Copiestxt
+        ' 
+        Copiestxt.Location = New Point(670, 282)
+        Copiestxt.Name = "Copiestxt"
+        Copiestxt.Size = New Size(39, 23)
+        Copiestxt.TabIndex = 18
+        ' 
+        ' Newrad
+        ' 
+        Newrad.AutoSize = True
+        Newrad.Checked = True
+        Newrad.Location = New Point(532, 314)
+        Newrad.Name = "Newrad"
+        Newrad.Size = New Size(79, 19)
+        Newrad.TabIndex = 19
+        Newrad.TabStop = True
+        Newrad.Text = "New Book"
+        Newrad.UseVisualStyleBackColor = True
+        ' 
+        ' Existingrad
+        ' 
+        Existingrad.AutoSize = True
+        Existingrad.Location = New Point(636, 314)
+        Existingrad.Name = "Existingrad"
+        Existingrad.Size = New Size(96, 19)
+        Existingrad.TabIndex = 20
+        Existingrad.Text = "Existing Book"
+        Existingrad.UseVisualStyleBackColor = True
         ' 
         ' New_Book
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
-        Controls.Add(Phonetxt)
-        Controls.Add(Emailtxt)
+        Controls.Add(Existingrad)
+        Controls.Add(Newrad)
+        Controls.Add(Copiestxt)
+        Controls.Add(Label7)
+        Controls.Add(Label6)
+        Controls.Add(PubDate)
+        Controls.Add(Genretxt)
+        Controls.Add(ISBNtxt)
         Controls.Add(Label5)
         Controls.Add(Label4)
-        Controls.Add(LNametxt)
-        Controls.Add(FNametxt)
-        Controls.Add(UIDtxt)
+        Controls.Add(Authortxt)
+        Controls.Add(Titletxt)
+        Controls.Add(BookIDtxt)
         Controls.Add(Label3)
         Controls.Add(Label2)
         Controls.Add(Label1)
@@ -179,11 +247,17 @@ Partial Class New_Book
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents UIDtxt As TextBox
-    Friend WithEvents FNametxt As TextBox
-    Friend WithEvents LNametxt As TextBox
+    Friend WithEvents BookIDtxt As TextBox
+    Friend WithEvents Titletxt As TextBox
+    Friend WithEvents Authortxt As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents Emailtxt As TextBox
-    Friend WithEvents Phonetxt As TextBox
+    Friend WithEvents ISBNtxt As TextBox
+    Friend WithEvents Genretxt As TextBox
+    Friend WithEvents PubDate As DateTimePicker
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Copiestxt As TextBox
+    Friend WithEvents Newrad As RadioButton
+    Friend WithEvents Existingrad As RadioButton
 End Class

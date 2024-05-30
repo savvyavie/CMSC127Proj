@@ -66,6 +66,8 @@ Public Class New_User
                 COMMAND = New MySqlCommand(Query, MySQLConn)
                 adapter = New MySqlDataAdapter(COMMAND)
                 adapter.Fill(dataTable)
+
+                MessageBox.Show("Insert Successful!")
             End Using
 
             UIDtxt.Text = Nothing
@@ -73,8 +75,6 @@ Public Class New_User
             LNametxt.Text = Nothing
             Emailtxt.Text = Nothing
             Phonetxt.Text = Nothing
-
-            MessageBox.Show("Insert Successful!")
 
             DataGridView1.DataSource = Nothing
             DataGridView1.Columns.Clear()

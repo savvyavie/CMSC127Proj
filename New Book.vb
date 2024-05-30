@@ -7,13 +7,13 @@ Public Class New_Book
     Private Sub New_User_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim COMMAND As MySqlCommand
         Dim MySQLConn As New MySqlConnection With {
-            .ConnectionString = "server=localhost;userid=root;database=library_database"
+            .ConnectionString = "server=localhost;userid=root;database=library_database; Convert Zero Datetime=True"
         }
 
         Try
             MySQLConn.Open()
             Dim Query As String
-            Query = "select * from users;"
+            Query = "select * from books;"
 
             Dim dataTable As New DataTable()
 
@@ -41,40 +41,61 @@ Public Class New_Book
     Private Sub Confirm_Click(sender As Object, e As EventArgs) Handles Confirm.Click
         Dim COMMAND As MySqlCommand
         Dim MySQLConn As New MySqlConnection With {
-            .ConnectionString = "server=localhost;userid=root;database=library_database"
+            .ConnectionString = "server=localhost;userid=root;database=library_database;Convert Zero Datetime=True"
         }
 
         Try
             MySQLConn.Open()
             Dim Query As String
-            Query = "insert into users(user_id, name, email, phone_number, currently_borrowed_counter) values ('" &
-                UIDtxt.Text & "', '" &
-                FNametxt.Text & " " &
-                LNametxt.Text & "', '" &
-                Emailtxt.Text & "', '" &
-                Phonetxt.Text & "', 0);"
-
+            Query = ""
             Dim dataTable As New DataTable
 
-            Using MySQLConn
-                COMMAND = New MySqlCommand(Query, MySQLConn)
-                Dim adapter As New MySqlDataAdapter(COMMAND)
-                adapter.Fill(dataTable)
+            If Newrad.Checked = True Then
+                Using MySQLConn
+                    Query = "insert into books(book_id, title, author, ISBN, genre, publication_date, available_copies) values ('" &
+                        BookIDtxt.Text & "', '" &
+                        Titletxt.Text & "', '" &
+                        Authortxt.Text & "', '" &
+                        ISBNtxt.Text & "', '" &
+                        Genretxt.Text & "', '" &
+                        PubDate.Text & "', '" &
+                        Copiestxt.Text & "');"
 
-                Query = "select * from users;"
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    Dim adapter As New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
 
-                COMMAND = New MySqlCommand(Query, MySQLConn)
-                adapter = New MySqlDataAdapter(COMMAND)
-                adapter.Fill(dataTable)
-            End Using
+                    Query = "select * from books;"
 
-            UIDtxt.Text = Nothing
-            FNametxt.Text = Nothing
-            LNametxt.Text = Nothing
-            Emailtxt.Text = Nothing
-            Phonetxt.Text = Nothing
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    adapter = New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
+                End Using
+            ElseIf Existingrad.Checked = True Then
+                Using MySQLConn
+                    Query = "update books set available_copies = available_copies + " &
+                            Copiestxt.Text & " where book_id = " & BookIDtxt.Text & ";"
 
-            MessageBox.Show("Insert Successful!")
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    Dim adapter As New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
+
+                    Query = "select * from books;"
+
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    adapter = New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
+
+                    MessageBox.Show("Update Successful!")
+                End Using
+            End If
+
+            BookIDtxt.Text = Nothing
+            Titletxt.Text = Nothing
+            Authortxt.Text = Nothing
+            ISBNtxt.Text = Nothing
+            Genretxt.Text = Nothing
+            Copiestxt.Text = Nothing
 
             DataGridView1.DataSource = Nothing
             DataGridView1.Columns.Clear()
@@ -95,4 +116,21 @@ Public Class New_Book
         Me.Hide()
         Main_Page.Show()
     End Sub
+
+    Private Sub Newrad_CheckedChanged(sender As Object, e As EventArgs) Handles Newrad.CheckedChanged
+        Titletxt.Enabled = True
+        Authortxt.Enabled = True
+        ISBNtxt.Enabled = True
+        Genretxt.Enabled = True
+        PubDate.Enabled = True
+    End Sub
+
+    Private Sub Existingrad_CheckedChanged(sender As Object, e As EventArgs) Handles Existingrad.CheckedChanged
+        Titletxt.Enabled = False
+        Authortxt.Enabled = False
+        ISBNtxt.Enabled = False
+        Genretxt.Enabled = False
+        PubDate.Enabled = False
+    End Sub
+
 End Class

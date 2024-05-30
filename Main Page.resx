@@ -117,4 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Label2.Text" xml:space="preserve">
+    <value>NOTE: 
+No search function available
+in this version. Update funtions
+are limited to number of book
+copies and number of books
+borrowed per user. Deleting a
+book will remove all copies of
+the book.</value>
+  </data>
 </root>

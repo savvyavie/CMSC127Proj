@@ -22,6 +22,7 @@ Partial Class Main_Page
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main_Page))
         newUserBtn = New Button()
         DataGridView1 = New DataGridView()
         ComboBox1 = New ComboBox()
@@ -121,11 +122,11 @@ Partial Class Main_Page
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(12, 337)
+        Label2.Location = New Point(12, 300)
         Label2.Name = "Label2"
-        Label2.Size = New Size(171, 90)
+        Label2.Size = New Size(171, 120)
         Label2.TabIndex = 9
-        Label2.Text = "NOTE: " & vbCrLf & "No search function available" & vbCrLf & "in this version. Update funtions" & vbCrLf & "are limited to number of book" & vbCrLf & "copies and number of books" & vbCrLf & "borrowed per user."
+        Label2.Text = resources.GetString("Label2.Text")
         ' 
         ' Main_Page
         ' 

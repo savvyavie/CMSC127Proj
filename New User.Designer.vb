@@ -52,7 +52,7 @@ Partial Class New_User
         ' 
         ' Confirm
         ' 
-        Confirm.Location = New Point(236, 379)
+        Confirm.Location = New Point(244, 379)
         Confirm.Name = "Confirm"
         Confirm.Size = New Size(154, 59)
         Confirm.TabIndex = 3
@@ -61,7 +61,7 @@ Partial Class New_User
         ' 
         ' Closebtn
         ' 
-        Closebtn.Location = New Point(396, 379)
+        Closebtn.Location = New Point(404, 379)
         Closebtn.Name = "Closebtn"
         Closebtn.Size = New Size(154, 59)
         Closebtn.TabIndex = 4
@@ -71,7 +71,7 @@ Partial Class New_User
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(194, 227)
+        Label1.Location = New Point(202, 227)
         Label1.Name = "Label1"
         Label1.Size = New Size(29, 15)
         Label1.TabIndex = 5
@@ -80,7 +80,7 @@ Partial Class New_User
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(194, 256)
+        Label2.Location = New Point(202, 256)
         Label2.Name = "Label2"
         Label2.Size = New Size(67, 15)
         Label2.TabIndex = 6
@@ -89,7 +89,7 @@ Partial Class New_User
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(194, 285)
+        Label3.Location = New Point(202, 285)
         Label3.Name = "Label3"
         Label3.Size = New Size(66, 15)
         Label3.TabIndex = 7
@@ -97,21 +97,21 @@ Partial Class New_User
         ' 
         ' UIDtxt
         ' 
-        UIDtxt.Location = New Point(296, 224)
+        UIDtxt.Location = New Point(304, 224)
         UIDtxt.Name = "UIDtxt"
         UIDtxt.Size = New Size(300, 23)
         UIDtxt.TabIndex = 8
         ' 
         ' FNametxt
         ' 
-        FNametxt.Location = New Point(296, 253)
+        FNametxt.Location = New Point(304, 253)
         FNametxt.Name = "FNametxt"
         FNametxt.Size = New Size(300, 23)
         FNametxt.TabIndex = 9
         ' 
         ' LNametxt
         ' 
-        LNametxt.Location = New Point(296, 282)
+        LNametxt.Location = New Point(304, 282)
         LNametxt.Name = "LNametxt"
         LNametxt.Size = New Size(300, 23)
         LNametxt.TabIndex = 10
@@ -119,7 +119,7 @@ Partial Class New_User
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(194, 314)
+        Label4.Location = New Point(202, 314)
         Label4.Name = "Label4"
         Label4.Size = New Size(39, 15)
         Label4.TabIndex = 11
@@ -128,7 +128,7 @@ Partial Class New_User
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(194, 343)
+        Label5.Location = New Point(202, 343)
         Label5.Name = "Label5"
         Label5.Size = New Size(91, 15)
         Label5.TabIndex = 12
@@ -136,14 +136,14 @@ Partial Class New_User
         ' 
         ' Emailtxt
         ' 
-        Emailtxt.Location = New Point(296, 311)
+        Emailtxt.Location = New Point(304, 311)
         Emailtxt.Name = "Emailtxt"
         Emailtxt.Size = New Size(300, 23)
         Emailtxt.TabIndex = 13
         ' 
         ' Phonetxt
         ' 
-        Phonetxt.Location = New Point(296, 340)
+        Phonetxt.Location = New Point(304, 340)
         Phonetxt.Name = "Phonetxt"
         Phonetxt.Size = New Size(300, 23)
         Phonetxt.TabIndex = 14
