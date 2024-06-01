@@ -24,7 +24,7 @@ Public Class Main_Page
             ElseIf ComboBox1.Text = "Books" Then
                 Query = "select * from books;"
             ElseIf ComboBox1.Text = "Transactions" Then
-                Query = "select transaction_id, book_id, user_id, name, title, author, ISBN, genre, borrow_date, return_date
+                Query = "select transaction_id, user_id, book_id, name, title, author, ISBN, genre, borrow_date, return_date
                          from (transactions natural join users) natural join books order by transaction_id;"
             End If
 

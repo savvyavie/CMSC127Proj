@@ -50,7 +50,9 @@ Public Class New_Transaction
 
             Dim dataTable As New DataTable()
 
-            If BorrowOp.Checked = True Then
+            If TransactionIDtxt.Text = Nothing Or UIDtxt.Text = Nothing Or BookIDtxt.Text = Nothing Then
+                MessageBox.Show("Incomplete information!")
+            ElseIf BorrowOp.Checked = True Then
                 Using MySQLConn
                     Query = "insert into transactions values('" &
                              TransactionIDtxt.Text & "', '" &
@@ -58,13 +60,14 @@ Public Class New_Transaction
                              BookIDtxt.Text & "', '" &
                              dateTimeString & "', NULL);
 
-                             update users set currently_borrowed_counter = currently_borrowed_counter + 1;"
+                             update users set currently_borrowed_counter = currently_borrowed_counter + 1
+                             where user_id = '" & UIDtxt.Text & "';"
 
                     COMMAND = New MySqlCommand(Query, MySQLConn)
                     Dim adapter As New MySqlDataAdapter(COMMAND)
                     adapter.Fill(dataTable)
 
-                    Query = "select transaction_id, book_id, user_id, name, title, author, ISBN, genre, borrow_date, return_date
+                    Query = "select transaction_id, user_id, book_id, name, title, author, ISBN, genre, borrow_date, return_date
                          from (transactions natural join users) natural join books order by transaction_id;"
 
                     COMMAND = New MySqlCommand(Query, MySQLConn)
@@ -90,16 +93,17 @@ Public Class New_Transaction
                              "' where transaction_id = '" &
                              TransactionIDtxt.Text & "' and user_id = '" &
                              UIDtxt.Text & "' and book_id = '" &
-                             BookIDtxt.Text & "';
+                             BookIDtxt.Text & "' and return_date is NULL;
 
-                             update users set currently_borrowed_counter = currently_borrowed_counter - 1;"
+                             update users set currently_borrowed_counter = currently_borrowed_counter - 1
+                             where user_id = '" & UIDtxt.Text & "' and currently_borrowed_counter > 0;"
 
 
                     COMMAND = New MySqlCommand(Query, MySQLConn)
                     Dim adapter As New MySqlDataAdapter(COMMAND)
                     adapter.Fill(dataTable)
 
-                    Query = "select transaction_id, book_id, user_id, name, title, author, ISBN, genre, borrow_date, return_date
+                    Query = "select transaction_id, user_id, book_id, name, title, author, ISBN, genre, borrow_date, return_date
                          from (transactions natural join users) natural join books order by transaction_id;"
 
                     COMMAND = New MySqlCommand(Query, MySQLConn)

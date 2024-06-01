@@ -47,39 +47,44 @@ Public Class New_User
         Try
             MySQLConn.Open()
             Dim Query As String
-            Query = "insert into users(user_id, name, email, phone_number, currently_borrowed_counter) values ('" &
+
+            If UIDtxt.Text = Nothing Or FNametxt.Text = Nothing Or LNametxt.Text = Nothing Then
+                MessageBox.Show("Incomplete information!")
+            Else
+                Query = "insert into users(user_id, name, email, phone_number, currently_borrowed_counter) values ('" &
                 UIDtxt.Text & "', '" &
                 FNametxt.Text & " " &
                 LNametxt.Text & "', '" &
                 Emailtxt.Text & "', '" &
                 Phonetxt.Text & "', 0);"
 
-            Dim dataTable As New DataTable()
+                Dim dataTable As New DataTable()
 
-            Using MySQLConn
-                COMMAND = New MySqlCommand(Query, MySQLConn)
-                Dim adapter As New MySqlDataAdapter(COMMAND)
-                adapter.Fill(dataTable)
+                Using MySQLConn
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    Dim adapter As New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
 
-                Query = "select * from users;"
+                    Query = "select * from users;"
 
-                COMMAND = New MySqlCommand(Query, MySQLConn)
-                adapter = New MySqlDataAdapter(COMMAND)
-                adapter.Fill(dataTable)
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    adapter = New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
 
-                MessageBox.Show("Insert Successful!")
-            End Using
+                    MessageBox.Show("Insert Successful!")
+                End Using
 
-            UIDtxt.Text = Nothing
-            FNametxt.Text = Nothing
-            LNametxt.Text = Nothing
-            Emailtxt.Text = Nothing
-            Phonetxt.Text = Nothing
+                UIDtxt.Text = Nothing
+                FNametxt.Text = Nothing
+                LNametxt.Text = Nothing
+                Emailtxt.Text = Nothing
+                Phonetxt.Text = Nothing
 
-            DataGridView1.DataSource = Nothing
-            DataGridView1.Columns.Clear()
+                DataGridView1.DataSource = Nothing
+                DataGridView1.Columns.Clear()
 
-            DataGridView1.DataSource = dataTable
+                DataGridView1.DataSource = dataTable
+            End If
 
             MySQLConn.Close()
 

@@ -50,8 +50,11 @@ Public Class New_Book
             Query = ""
             Dim dataTable As New DataTable
 
-            Using MySQLConn
-                Query = "insert into books(book_id, title, author, ISBN, genre, publication_date) values ('" &
+            If BookIDtxt.Text = Nothing Or Titletxt.Text = Nothing Or Authortxt.Text = Nothing Or ISBNtxt.Text = Nothing Or Genretxt.Text = Nothing Then
+                MessageBox.Show("Incomplete information!")
+            Else
+                Using MySQLConn
+                    Query = "insert into books(book_id, title, author, ISBN, genre, publication_date) values ('" &
                     BookIDtxt.Text & "', '" &
                     Titletxt.Text & "', '" &
                     Authortxt.Text & "', '" &
@@ -59,27 +62,30 @@ Public Class New_Book
                     Genretxt.Text & "', '" &
                     PubDate.Text & "');"
 
-                COMMAND = New MySqlCommand(Query, MySQLConn)
-                Dim adapter As New MySqlDataAdapter(COMMAND)
-                adapter.Fill(dataTable)
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    Dim adapter As New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
 
-                Query = "select * from books;"
+                    Query = "select * from books;"
 
-                COMMAND = New MySqlCommand(Query, MySQLConn)
-                adapter = New MySqlDataAdapter(COMMAND)
-                adapter.Fill(dataTable)
-            End Using
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    adapter = New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
+                End Using
 
-            BookIDtxt.Text = Nothing
-            Titletxt.Text = Nothing
-            Authortxt.Text = Nothing
-            ISBNtxt.Text = Nothing
-            Genretxt.Text = Nothing
+                BookIDtxt.Text = Nothing
+                Titletxt.Text = Nothing
+                Authortxt.Text = Nothing
+                ISBNtxt.Text = Nothing
+                Genretxt.Text = Nothing
 
-            DataGridView1.DataSource = Nothing
-            DataGridView1.Columns.Clear()
+                DataGridView1.DataSource = Nothing
+                DataGridView1.Columns.Clear()
 
-            DataGridView1.DataSource = dataTable
+                DataGridView1.DataSource = dataTable
+
+            End If
+
 
             MySQLConn.Close()
 
@@ -93,22 +99,6 @@ Public Class New_Book
 
     Private Sub Close_Click(sender As Object, e As EventArgs) Handles Closebtn.Click
         Me.Close()
-    End Sub
-
-    Private Sub Newrad_CheckedChanged(sender As Object, e As EventArgs)
-        Titletxt.Enabled = True
-        Authortxt.Enabled = True
-        ISBNtxt.Enabled = True
-        Genretxt.Enabled = True
-        PubDate.Enabled = True
-    End Sub
-
-    Private Sub Existingrad_CheckedChanged(sender As Object, e As EventArgs)
-        Titletxt.Enabled = False
-        Authortxt.Enabled = False
-        ISBNtxt.Enabled = False
-        Genretxt.Enabled = False
-        PubDate.Enabled = False
     End Sub
 
 End Class
