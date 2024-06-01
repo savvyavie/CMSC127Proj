@@ -7,7 +7,7 @@ Public Class Delete_Book
     Private Sub Delete_Book_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim COMMAND As MySqlCommand
         Dim MySQLConn As New MySqlConnection With {
-            .ConnectionString = "server=localhost;userid=root;database=library_database"
+            .ConnectionString = "server=localhost;userid=root;database=library_database;Convert Zero Datetime=True"
         }
 
         Try
@@ -41,7 +41,7 @@ Public Class Delete_Book
     Private Sub Confirm_Click(sender As Object, e As EventArgs) Handles Confirm.Click
         Dim COMMAND As MySqlCommand
         Dim MySQLConn As New MySqlConnection With {
-            .ConnectionString = "server=localhost;userid=root;database=library_database"
+            .ConnectionString = "server=localhost;userid=root;database=library_database;Convert Zero Datetime=True"
         }
 
         Try
