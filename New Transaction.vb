@@ -1,4 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports Mysqlx.Expect.Open.Types
 
 Public Class New_Transaction
     Private Sub New_Transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -15,7 +16,7 @@ Public Class New_Transaction
 
             Using MySQLConn
                 Query = "select transaction_id, user_id, book_id, name, title, borrow_date, return_date
-                         from (transactions natural join users) natural join books;"
+                         from (transactions natural join users) natural join books order by transaction_id;"
                 COMMAND = New MySqlCommand(Query, MySQLConn)
                 Dim adapter As New MySqlDataAdapter(COMMAND)
                 adapter.Fill(dataTable)
@@ -50,12 +51,24 @@ Public Class New_Transaction
             Dim dataTable As New DataTable()
 
             If BorrowOp.Checked = True Then
-
                 Using MySQLConn
-                    Query = "insert into transactions"
+                    Query = "insert into transactions values('" &
+                             TransactionIDtxt.Text & "', '" &
+                             UIDtxt.Text & "', '" &
+                             BookIDtxt.Text & "', '" &
+                             dateTimeString & "', NULL);
+
+                             update users set currently_borrowed_counter = currently_borrowed_counter + 1;"
 
                     COMMAND = New MySqlCommand(Query, MySQLConn)
                     Dim adapter As New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
+
+                    Query = "select transaction_id, book_id, user_id, name, title, author, ISBN, genre, borrow_date, return_date
+                         from (transactions natural join users) natural join books order by transaction_id;"
+
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    adapter = New MySqlDataAdapter(COMMAND)
                     adapter.Fill(dataTable)
                 End Using
 
@@ -64,8 +77,47 @@ Public Class New_Transaction
 
                 DataGridView1.DataSource = dataTable
 
+                MessageBox.Show("Borrow Successful!")
+
+                TransactionIDtxt.Text = Nothing
+                BookIDtxt.Text = Nothing
+                UIDtxt.Text = Nothing
+
             ElseIf ReturnOp.Checked = True Then
-                MessageBox.Show("There!")
+                Using MySQLConn
+                    Query = "update transactions
+                             set return_date = '" & dateTimeString &
+                             "' where transaction_id = '" &
+                             TransactionIDtxt.Text & "' and user_id = '" &
+                             UIDtxt.Text & "' and book_id = '" &
+                             BookIDtxt.Text & "';
+
+                             update users set currently_borrowed_counter = currently_borrowed_counter - 1;"
+
+
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    Dim adapter As New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
+
+                    Query = "select transaction_id, book_id, user_id, name, title, author, ISBN, genre, borrow_date, return_date
+                         from (transactions natural join users) natural join books order by transaction_id;"
+
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    adapter = New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
+                End Using
+
+                DataGridView1.DataSource = Nothing
+                DataGridView1.Columns.Clear()
+
+                DataGridView1.DataSource = dataTable
+
+                MessageBox.Show("Return Successful!")
+
+                TransactionIDtxt.Text = Nothing
+                BookIDtxt.Text = Nothing
+                UIDtxt.Text = Nothing
+
             End If
 
 

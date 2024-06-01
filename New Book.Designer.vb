@@ -37,10 +37,6 @@ Partial Class New_Book
         Genretxt = New TextBox()
         PubDate = New DateTimePicker()
         Label6 = New Label()
-        Label7 = New Label()
-        Copiestxt = New TextBox()
-        Newrad = New RadioButton()
-        Existingrad = New RadioButton()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -172,53 +168,11 @@ Partial Class New_Book
         Label6.TabIndex = 16
         Label6.Text = "Publishing Date:"
         ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Location = New Point(557, 285)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(107, 15)
-        Label7.TabIndex = 17
-        Label7.Text = "Number of Copies:"
-        ' 
-        ' Copiestxt
-        ' 
-        Copiestxt.Location = New Point(670, 282)
-        Copiestxt.Name = "Copiestxt"
-        Copiestxt.Size = New Size(39, 23)
-        Copiestxt.TabIndex = 18
-        ' 
-        ' Newrad
-        ' 
-        Newrad.AutoSize = True
-        Newrad.Checked = True
-        Newrad.Location = New Point(532, 314)
-        Newrad.Name = "Newrad"
-        Newrad.Size = New Size(79, 19)
-        Newrad.TabIndex = 19
-        Newrad.TabStop = True
-        Newrad.Text = "New Book"
-        Newrad.UseVisualStyleBackColor = True
-        ' 
-        ' Existingrad
-        ' 
-        Existingrad.AutoSize = True
-        Existingrad.Location = New Point(636, 314)
-        Existingrad.Name = "Existingrad"
-        Existingrad.Size = New Size(96, 19)
-        Existingrad.TabIndex = 20
-        Existingrad.Text = "Existing Book"
-        Existingrad.UseVisualStyleBackColor = True
-        ' 
         ' New_Book
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
-        Controls.Add(Existingrad)
-        Controls.Add(Newrad)
-        Controls.Add(Copiestxt)
-        Controls.Add(Label7)
         Controls.Add(Label6)
         Controls.Add(PubDate)
         Controls.Add(Genretxt)
@@ -256,8 +210,4 @@ Partial Class New_Book
     Friend WithEvents Genretxt As TextBox
     Friend WithEvents PubDate As DateTimePicker
     Friend WithEvents Label6 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Copiestxt As TextBox
-    Friend WithEvents Newrad As RadioButton
-    Friend WithEvents Existingrad As RadioButton
 End Class

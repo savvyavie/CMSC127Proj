@@ -50,52 +50,31 @@ Public Class New_Book
             Query = ""
             Dim dataTable As New DataTable
 
-            If Newrad.Checked = True Then
-                Using MySQLConn
-                    Query = "insert into books(book_id, title, author, ISBN, genre, publication_date, available_copies) values ('" &
-                        BookIDtxt.Text & "', '" &
-                        Titletxt.Text & "', '" &
-                        Authortxt.Text & "', '" &
-                        ISBNtxt.Text & "', '" &
-                        Genretxt.Text & "', '" &
-                        PubDate.Text & "', '" &
-                        Copiestxt.Text & "');"
+            Using MySQLConn
+                Query = "insert into books(book_id, title, author, ISBN, genre, publication_date) values ('" &
+                    BookIDtxt.Text & "', '" &
+                    Titletxt.Text & "', '" &
+                    Authortxt.Text & "', '" &
+                    ISBNtxt.Text & "', '" &
+                    Genretxt.Text & "', '" &
+                    PubDate.Text & "');"
 
-                    COMMAND = New MySqlCommand(Query, MySQLConn)
-                    Dim adapter As New MySqlDataAdapter(COMMAND)
-                    adapter.Fill(dataTable)
+                COMMAND = New MySqlCommand(Query, MySQLConn)
+                Dim adapter As New MySqlDataAdapter(COMMAND)
+                adapter.Fill(dataTable)
 
-                    Query = "select * from books;"
+                Query = "select * from books;"
 
-                    COMMAND = New MySqlCommand(Query, MySQLConn)
-                    adapter = New MySqlDataAdapter(COMMAND)
-                    adapter.Fill(dataTable)
-                End Using
-            ElseIf Existingrad.Checked = True Then
-                Using MySQLConn
-                    Query = "update books set available_copies = available_copies + " &
-                            Copiestxt.Text & " where book_id = " & BookIDtxt.Text & ";"
-
-                    COMMAND = New MySqlCommand(Query, MySQLConn)
-                    Dim adapter As New MySqlDataAdapter(COMMAND)
-                    adapter.Fill(dataTable)
-
-                    Query = "select * from books;"
-
-                    COMMAND = New MySqlCommand(Query, MySQLConn)
-                    adapter = New MySqlDataAdapter(COMMAND)
-                    adapter.Fill(dataTable)
-
-                    MessageBox.Show("Update Successful!")
-                End Using
-            End If
+                COMMAND = New MySqlCommand(Query, MySQLConn)
+                adapter = New MySqlDataAdapter(COMMAND)
+                adapter.Fill(dataTable)
+            End Using
 
             BookIDtxt.Text = Nothing
             Titletxt.Text = Nothing
             Authortxt.Text = Nothing
             ISBNtxt.Text = Nothing
             Genretxt.Text = Nothing
-            Copiestxt.Text = Nothing
 
             DataGridView1.DataSource = Nothing
             DataGridView1.Columns.Clear()
@@ -116,7 +95,7 @@ Public Class New_Book
         Me.Close()
     End Sub
 
-    Private Sub Newrad_CheckedChanged(sender As Object, e As EventArgs) Handles Newrad.CheckedChanged
+    Private Sub Newrad_CheckedChanged(sender As Object, e As EventArgs)
         Titletxt.Enabled = True
         Authortxt.Enabled = True
         ISBNtxt.Enabled = True
@@ -124,7 +103,7 @@ Public Class New_Book
         PubDate.Enabled = True
     End Sub
 
-    Private Sub Existingrad_CheckedChanged(sender As Object, e As EventArgs) Handles Existingrad.CheckedChanged
+    Private Sub Existingrad_CheckedChanged(sender As Object, e As EventArgs)
         Titletxt.Enabled = False
         Authortxt.Enabled = False
         ISBNtxt.Enabled = False
