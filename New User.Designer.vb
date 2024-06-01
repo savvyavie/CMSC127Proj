@@ -73,9 +73,9 @@ Partial Class New_User
         Label1.AutoSize = True
         Label1.Location = New Point(202, 227)
         Label1.Name = "Label1"
-        Label1.Size = New Size(29, 15)
+        Label1.Size = New Size(44, 15)
         Label1.TabIndex = 5
-        Label1.Text = "UID:"
+        Label1.Text = "UserID:"
         ' 
         ' Label2
         ' 
@@ -150,7 +150,7 @@ Partial Class New_User
         ' 
         ' New_User
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
         Controls.Add(Phonetxt)
