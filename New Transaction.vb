@@ -4,18 +4,18 @@ Public Class New_Transaction
     Private Sub New_Transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim COMMAND As MySqlCommand
         Dim MySQLConn As New MySqlConnection With {
-            .ConnectionString = "server=localhost;userid=root;database=library_database"
+            .ConnectionString = "server=localhost;userid=root;database=library_database;Convert Zero Datetime=True"
         }
 
         Try
             MySQLConn.Open()
             Dim Query As String
-            Query = "select transaction_id, user_id, name, title, author, ISBN, genre, borrow_date, return_date
-                         from (transactions natural join users) natural join books;"
 
             Dim dataTable As New DataTable()
 
             Using MySQLConn
+                Query = "select transaction_id, user_id, book_id, name, title, borrow_date, return_date
+                         from (transactions natural join users) natural join books;"
                 COMMAND = New MySqlCommand(Query, MySQLConn)
                 Dim adapter As New MySqlDataAdapter(COMMAND)
                 adapter.Fill(dataTable)
@@ -38,42 +38,37 @@ Public Class New_Transaction
     Private Sub Confirm_Click(sender As Object, e As EventArgs) Handles Confirm.Click
         Dim COMMAND As MySqlCommand
         Dim MySQLConn As New MySqlConnection With {
-            .ConnectionString = "server=localhost;userid=root;database=library_database"
+            .ConnectionString = "server=localhost;userid=root;database=library_database;Convert Zero Datetime=True"
         }
-
-        If BorrowOp.Checked = True Then
-            MessageBox.Show("Hi!")
-        ElseIf ReturnOp.Checked = True Then
-            MessageBox.Show("There!")
-        Else
-
-        End If
 
         Try
             MySQLConn.Open()
+            Dim currentTime As DateTime = DateTime.Now
+            Dim dateTimeString As String = currentTime.ToString("yyyy-MM-dd hh:mm:ss")
             Dim Query As String
-            Query = ""
-
-            If BorrowOp.Checked = True Then
-                MessageBox.Show("Hi!")
-            ElseIf ReturnOp.Checked = True Then
-                MessageBox.Show("There!")
-            Else
-
-            End If
 
             Dim dataTable As New DataTable()
 
-            Using MySQLConn
-                COMMAND = New MySqlCommand(Query, MySQLConn)
-                Dim adapter As New MySqlDataAdapter(COMMAND)
-                adapter.Fill(dataTable)
-            End Using
+            If BorrowOp.Checked = True Then
 
-            DataGridView1.DataSource = Nothing
-            DataGridView1.Columns.Clear()
+                Using MySQLConn
+                    Query = "insert into transactions"
 
-            DataGridView1.DataSource = dataTable
+                    COMMAND = New MySqlCommand(Query, MySQLConn)
+                    Dim adapter As New MySqlDataAdapter(COMMAND)
+                    adapter.Fill(dataTable)
+                End Using
+
+                DataGridView1.DataSource = Nothing
+                DataGridView1.Columns.Clear()
+
+                DataGridView1.DataSource = dataTable
+
+            ElseIf ReturnOp.Checked = True Then
+                MessageBox.Show("There!")
+            End If
+
+
 
             MySQLConn.Close()
 
@@ -84,11 +79,7 @@ Public Class New_Transaction
         End Try
     End Sub
 
-    Private Sub BorrowOp_CheckedChanged(sender As Object, e As EventArgs) Handles BorrowOp.CheckedChanged
-
-    End Sub
-
-    Private Sub ReturnOp_CheckedChanged(sender As Object, e As EventArgs) Handles ReturnOp.CheckedChanged
-
+    Private Sub Closebtn_Click(sender As Object, e As EventArgs) Handles Closebtn.Click
+        Me.Close()
     End Sub
 End Class

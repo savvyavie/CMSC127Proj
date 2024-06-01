@@ -4,7 +4,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class New_Book
 
-    Private Sub New_User_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub New_Book_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim COMMAND As MySqlCommand
         Dim MySQLConn As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;database=library_database; Convert Zero Datetime=True"
@@ -113,8 +113,7 @@ Public Class New_Book
     End Sub
 
     Private Sub Close_Click(sender As Object, e As EventArgs) Handles Closebtn.Click
-        Me.Hide()
-        Main_Page.Show()
+        Me.Close()
     End Sub
 
     Private Sub Newrad_CheckedChanged(sender As Object, e As EventArgs) Handles Newrad.CheckedChanged

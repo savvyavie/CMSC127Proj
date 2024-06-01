@@ -92,7 +92,6 @@ Public Class New_User
     End Sub
 
     Private Sub Close_Click(sender As Object, e As EventArgs) Handles Closebtn.Click
-        Me.Hide()
-        Main_Page.Show()
+        Me.Close()
     End Sub
 End Class
