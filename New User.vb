@@ -48,7 +48,7 @@ Public Class New_User
             MySQLConn.Open()
             Dim Query As String
 
-            If UIDtxt.Text = Nothing Or FNametxt.Text = Nothing Or LNametxt.Text = Nothing Then
+            If UIDtxt.Text = Nothing Or FNametxt.Text = Nothing Or LNametxt.Text = Nothing Or Emailtxt.Text = Nothing Or Phonetxt.Text = Nothing Then
                 MessageBox.Show("Incomplete information!")
             Else
                 Query = "insert into users(user_id, name, email, phone_number, currently_borrowed_counter) values ('" &

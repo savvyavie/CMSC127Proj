@@ -122,9 +122,9 @@ Partial Class Main_Page
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(12, 300)
+        Label2.Location = New Point(12, 295)
         Label2.Name = "Label2"
-        Label2.Size = New Size(171, 120)
+        Label2.Size = New Size(171, 135)
         Label2.TabIndex = 9
         Label2.Text = resources.GetString("Label2.Text")
         ' 

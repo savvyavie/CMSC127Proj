@@ -71,6 +71,8 @@ Public Class New_Book
                     COMMAND = New MySqlCommand(Query, MySQLConn)
                     adapter = New MySqlDataAdapter(COMMAND)
                     adapter.Fill(dataTable)
+
+                    MessageBox.Show("Insert Successful!")
                 End Using
 
                 BookIDtxt.Text = Nothing
